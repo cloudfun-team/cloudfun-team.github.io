@@ -1,0 +1,14 @@
+body {
+    color: #fff;
+    text-align: center;
+    font-family: monospace;
+}
+
+h1 {
+    margin-top: 25%;
+    font-size: 500%;
+}
+
+footer {
+    margin-top: 20%;
+}
