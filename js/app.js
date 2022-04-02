@@ -42,7 +42,6 @@ $(document).ready(function () {
       const self = this;
       $(window).scroll(function (e) {
         const scrollTop = $(this).scrollTop();
-        console.log(scrollTop);
         self.activeNavItem(scrollTop);
         if (scrollTop > 115 && !status.hasWhiteBackgroud) {
           $("header").addClass("whiteBackgroud");
@@ -124,16 +123,6 @@ $(document).ready(function () {
         $this.addClass("active").siblings().removeClass("active");
         self.scrollTo($this);
       });
-
-      // 人物介绍
-      $(".user-card").hover(
-        function () {
-          $(this).find(".user-info").fadeIn(300);
-        },
-        function () {
-          $(this).find(".user-info").fadeOut(300);
-        }
-      );
     },
   };
 
