@@ -2,6 +2,7 @@ const $ = jQuery;
 import Advantage from "./advantage.js";
 import Blogs from "./blogs.js";
 import User from "./user.js";
+import AutoSize from "./autoSize.js";
 
 $(document).ready(function () {
   const status = {
@@ -12,11 +13,12 @@ $(document).ready(function () {
   const app = {
     SECTION_TOP: {},
     init: function () {
+      AutoSize.init();
       Advantage.init();
       Blogs.init();
       User.init();
 
-      $("html").animate({ scrollTop: 0 }, 500, "swing");
+      // $("html").animate({ scrollTop: 0 }, 500, "swing");
       this.getSectionScrollTop();
       this.winScroll();
       this.events();
@@ -40,6 +42,7 @@ $(document).ready(function () {
     // 页面滚动
     winScroll: function () {
       const self = this;
+      const clientWidth = document.documentElement.clientWidth;
       $(window).scroll(function (e) {
         const scrollTop = $(this).scrollTop();
         self.activeNavItem(scrollTop);
@@ -53,15 +56,17 @@ $(document).ready(function () {
           $(".circle-bg").show();
           status.hasWhiteBackgroud = false;
         }
-        if (scrollTop > 400 && !status.navWithLogo) {
-          $(".nav-box").animate({ marginLeft: 120 }, 300);
-          $(".nav-logo").show().delay(300);
-          status.navWithLogo = true;
-        }
-        if (scrollTop < 400 && status.navWithLogo) {
-          $(".nav-logo").hide();
-          $(".nav-box").animate({ marginLeft: 0 }, 200);
-          status.navWithLogo = false;
+        if (clientWidth >= 1200) {
+          if (scrollTop > 400 && !status.navWithLogo) {
+            $(".nav-box").animate({ marginLeft: 120 }, 300);
+            $(".nav-logo").show().delay(300);
+            status.navWithLogo = true;
+          }
+          if (scrollTop < 400 && status.navWithLogo) {
+            $(".nav-logo").hide();
+            $(".nav-box").animate({ marginLeft: 0 }, 200);
+            status.navWithLogo = false;
+          }
         }
       });
     },
